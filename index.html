@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>占いチャットシステム - 蒼司の占い館</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- メインチャットエリア -->
+        <div class="main-chat">
+            <div class="chat-header">
+                <h1>🔮 蒼司の占い館</h1>
+                <p class="character-intro">イケメン霊能師 蒼司があなたの心を癒し、未来への道標をお示しします</p>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>こんにちは。私は霊能師の蒼司と申します。今日はどのようなことでお悩みでしょうか？あなたの心の声を聞かせてください。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <div class="input-container">
+                    <textarea id="userInput" placeholder="悩みや想いを自由にお話しください..." rows="3"></textarea>
+                    <button id="sendButton" type="button">送信</button>
+                </div>
+            </div>
+            
+            <!-- 占い提案エリア -->
+            <div class="fortune-suggestions" id="fortuneSuggestions" style="display: none;">
+                <h3>✨ あなたにおすすめの占い</h3>
+                <div class="suggestions-container" id="suggestionsContainer">
+                    <!-- 動的に生成される占い提案 -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- サイドバー（リアルタイム表示） -->
+        <div class="sidebar">
+            <h2>📊 リアルタイム分析</h2>
+            
+            <!-- ラリー回数 -->
+            <div class="analysis-section">
+                <h3>💬 ラリー回数</h3>
+                <div class="value-display">
+                    <span id="rallyCount">0</span> 回
+                </div>
+            </div>
+            
+            <!-- I値 -->
+            <div class="analysis-section">
+                <h3>🧠 I値 (Intelligence)</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="iValueBar" style="width: 0%"></div>
+                </div>
+                <div class="value-display">
+                    <span id="iValue">0</span> / 100
+                </div>
+            </div>
+            
+            <!-- データ収集状況 -->
+            <div class="analysis-section">
+                <h3>📋 データ収集</h3>
+                <div class="data-collection">
+                    <div class="data-item">
+                        <span>基本情報</span>
+                        <span id="basicInfoProgress">0%</span>
+                    </div>
+                    <div class="data-item">
+                        <span>心理・感情</span>
+                        <span id="emotionProgress">0%</span>
+                    </div>
+                    <div class="data-item">
+                        <span>恋愛関係</span>
+                        <span id="loveProgress">0%</span>
+                    </div>
+                    <div class="data-item">
+                        <span>仕事・キャリア</span>
+                        <span id="careerProgress">0%</span>
+                    </div>
+                    <div class="data-item">
+                        <span>スピリチュアル</span>
+                        <span id="spiritualProgress">0%</span>
+                    </div>
+                    <div class="data-total">
+                        <strong>総合: <span id="totalDataProgress">0%</span></strong>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 検出ニーズ -->
+            <div class="analysis-section">
+                <h3>❤️ 検出ニーズ</h3>
+                <div class="needs-display">
+                    <div class="need-item">
+                        <span>愚痴・傾聴</span>
+                        <div class="need-bar">
+                            <div class="need-fill" id="complaintBar"></div>
+                        </div>
+                        <span id="complaintScore">0%</span>
+                    </div>
+                    <div class="need-item">
+                        <span>感情整理</span>
+                        <div class="need-bar">
+                            <div class="need-fill" id="emotionOrgBar"></div>
+                        </div>
+                        <span id="emotionOrgScore">0%</span>
+                    </div>
+                    <div class="need-item">
+                        <span>承認欲求</span>
+                        <div class="need-bar">
+                            <div class="need-fill" id="recognitionBar"></div>
+                        </div>
+                        <span id="recognitionScore">0%</span>
+                    </div>
+                    <div class="need-item">
+                        <span>励まし</span>
+                        <div class="need-bar">
+                            <div class="need-fill" id="encouragementBar"></div>
+                        </div>
+                        <span id="encouragementScore">0%</span>
+                    </div>
+                    <div class="need-item">
+                        <span>孤独感</span>
+                        <div class="need-bar">
+                            <div class="need-fill" id="lonelinessBar"></div>
+                        </div>
+                        <span id="lonelinessScore">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- キャラクター情報 -->
+            <div class="analysis-section">
+                <h3>👤 キャラクター</h3>
+                <div class="character-info">
+                    <div class="character-name">蒼司 (Souji)</div>
+                    <div class="character-role">イケメン霊能師</div>
+                    <div class="character-mood" id="characterMood">穏やか</div>
+                </div>
+            </div>
+            
+            <!-- RESORT値 -->
+            <div class="analysis-section">
+                <h3>🌟 RESORT-TI 分析</h3>
+                <div class="resort-display">
+                    <div class="resort-item">
+                        <span>R (関係性)</span>
+                        <span id="relationshipScore">0</span>
+                    </div>
+                    <div class="resort-item">
+                        <span>E (感情)</span>
+                        <span id="emotionScore">0</span>
+                    </div>
+                    <div class="resort-item">
+                        <span>S (精神性)</span>
+                        <span id="spiritScore">0</span>
+                    </div>
+                    <div class="resort-item">
+                        <span>O (職業)</span>
+                        <span id="occupationScore">0</span>
+                    </div>
+                    <div class="resort-item">
+                        <span>R (恋愛)</span>
+                        <span id="romanceScore">0</span>
+                    </div>
+                    <div class="resort-item">
+                        <span>T (時間)</span>
+                        <span id="timeScore">0</span>
+                    </div>
+                    <div class="resort-item">
+                        <span>I (知性)</span>
+                        <span id="intelligenceScore">0</span>
+                    </div>
+                    <div class="resort-total">
+                        <strong>総合: <span id="resortTotal">0</span></strong>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 感情分析値 -->
+            <div class="analysis-section">
+                <h3>😊 感情分析値</h3>
+                <div class="emotion-analysis">
+                    <div class="emotion-item">
+                        <span>極性</span>
+                        <span id="emotionPolarity">0.0</span>
+                    </div>
+                    <div class="emotion-item">
+                        <span>強度</span>
+                        <span id="emotionIntensity">0.0</span>
+                    </div>
+                    <div class="emotion-item">
+                        <span>主要感情</span>
+                        <span id="dominantEmotion">-</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 占い提案タイミング -->
+            <div class="analysis-section">
+                <h3>🎯 占い提案スコア</h3>
+                <div class="timing-score">
+                    <div class="score-display">
+                        <span id="fortuneTimingScore">0</span> / 100
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill fortune-timing" id="fortuneTimingBar"></div>
+                    </div>
+                    <div class="timing-status" id="timingStatus">準備中</div>
+                </div>
+            </div>
+            
+            <!-- 第三文カテゴリ -->
+            <div class="analysis-section">
+                <h3>💭 第3文カテゴリ</h3>
+                <div class="category-info">
+                    <div class="current-category">
+                        <span>選択カテゴリ:</span>
+                        <span id="selectedCategory">-</span>
+                    </div>
+                    <div class="category-score">
+                        <span>適合度:</span>
+                        <span id="categoryScore">-</span>
+                    </div>
+                    <div class="category-algorithm">
+                        <span>判定方式:</span>
+                        <span id="algorithmType">ニーズベース</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 占い結果モーダル -->
+    <div class="modal" id="fortuneModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="fortune-result" id="fortuneResult">
+                <!-- 占い結果が動的に挿入される -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- ログ管理パネル -->
+    <div class="log-controls" id="logControls">
+        <div class="log-buttons">
+            <button id="downloadLogsBtn" class="log-btn">📥 ログダウンロード</button>
+            <button id="clearLogsBtn" class="log-btn">🗑️ ログクリア</button>
+            <button id="toggleLogViewBtn" class="log-btn">👁️ ログ表示切替</button>
+        </div>
+        <div class="log-status" id="logStatus">
+            <span>ログ件数: <span id="logCount">0</span></span>
+            <span>セッションID: <span id="sessionId">-</span></span>
+        </div>
+    </div>
+    
+    <!-- ログビューアー -->
+    <div class="log-viewer" id="logViewer" style="display: none;">
+        <div class="log-viewer-header">
+            <h3>📋 ログビューアー</h3>
+            <button id="closeLogViewer" class="close-btn">×</button>
+        </div>
+        <div class="log-viewer-content" id="logViewerContent">
+            <!-- ログ内容がここに表示される -->
+        </div>
+    </div>
+    
+    <script src="app.js?v=20250916-fix-v2"></script>
+</body>
+</html>

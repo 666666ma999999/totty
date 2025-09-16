@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/masaaki/Desktop/prm/totty2/backend/main.py", line 48, in <module>
+    openai_client = OpenAI(api_key=OPENAI_API_KEY)
+  File "/Users/masaaki/Library/Python/3.9/lib/python/site-packages/openai/_client.py", line 107, in __init__
+    super().__init__(
+  File "/Users/masaaki/Library/Python/3.9/lib/python/site-packages/openai/_base_client.py", line 738, in __init__
+    self._client = http_client or httpx.Client(
+TypeError: __init__() got an unexpected keyword argument 'proxies'

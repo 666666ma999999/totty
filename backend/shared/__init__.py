@@ -1,0 +1,1 @@
+# Shared resources for integrated fortune chat system

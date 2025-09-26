@@ -50,6 +50,28 @@ body {
     opacity: 0.9;
 }
 
+.header-links {
+    margin-top: 15px;
+}
+
+.history-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.history-link:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .chat-messages {
     flex: 1;
     padding: 20px;
@@ -365,6 +387,38 @@ body {
     font-size: 1rem;
 }
 
+/* RESORT分析詳細 */
+.resort-analysis-details {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.resort-analysis-details h4 {
+    margin: 0 0 10px 0;
+    color: #4a5568;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.analysis-details-content {
+    font-size: 0.8em;
+    line-height: 1.5;
+    color: #666;
+}
+
+.detail-item {
+    margin-bottom: 8px;
+    padding: 4px 0;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
 /* 感情分析表示 */
 .emotion-analysis {
     font-size: 0.9rem;
@@ -375,6 +429,51 @@ body {
     justify-content: space-between;
     margin-bottom: 8px;
     padding: 5px 0;
+}
+
+/* 多層感情解析表示 */
+.emotion-layers {
+    font-size: 0.85rem;
+}
+
+.layer-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    padding: 2px 0;
+}
+
+.layer-label {
+    font-weight: 500;
+    color: #666;
+    min-width: 30px;
+}
+
+.layer-item:first-child .layer-label {
+    color: #e74c3c;  /* 表層 - 赤 */
+}
+
+.layer-item:nth-child(2) .layer-label {
+    color: #f39c12;  /* 中層 - オレンジ */
+}
+
+.layer-item:last-child .layer-label {
+    color: #3498db;  /* 深層 - 青 */
+}
+
+/* トーンマッチング表示 */
+.tone-info {
+    font-size: 0.9rem;
+}
+
+.tone-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.tone-item:last-child {
+    font-weight: 500;
 }
 
 /* 占いタイミングスコア */

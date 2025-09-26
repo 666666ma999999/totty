@@ -1,0 +1,51 @@
+{
+  "session_id": "chat_20250917_20250917_20250917_300d97c8",
+  "session_name": "チャットセッション 2025/09/17 22:35",
+  "start_time": "2025-09-17T13:35:59.662690+00:00",
+  "end_time": "2025-09-17T13:35:59.662977+00:00",
+  "message_count": 2,
+  "duration_minutes": 0.0,
+  "messages": [
+    {
+      "message_id": "20250917_20250917_300d97c8_0",
+      "type": "user",
+      "content": "今日は仕事で嫌なことがあって疲れました",
+      "timestamp": "2025-09-17T13:35:59.662649+00:00",
+      "metadata": {}
+    },
+    {
+      "message_id": "20250917_20250917_300d97c8_1",
+      "type": "ai",
+      "content": "申し訳ございません。一時的にお答えできません。少し時間をおいてからもう一度お試しください。",
+      "timestamp": "2025-09-17T13:35:59.662977+00:00",
+      "metadata": {
+        "category": "深い共感",
+        "needs_analysis": {
+          "complaining_listening": 1.0,
+          "emotion_organizing": 0.0,
+          "recognition_desire": 0.0,
+          "encouragement": 0.0,
+          "loneliness": 0.0
+        },
+        "emotion_analysis": {
+          "polarity": -0.6,
+          "intensity": 0.8,
+          "dominant_emotion": "ネガティブ"
+        },
+        "resort_scores": {
+          "relationship": 3,
+          "emotion": 10,
+          "spirit": 13,
+          "occupation": 8,
+          "romance": 3,
+          "time": 5,
+          "intelligence": 23
+        },
+        "fortune_timing_score": 9,
+        "suggested_fortune": null,
+        "rally_count": 1,
+        "user_data": {}
+      }
+    }
+  ]
+}

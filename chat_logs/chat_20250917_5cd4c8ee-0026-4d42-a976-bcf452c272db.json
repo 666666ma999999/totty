@@ -1,0 +1,94 @@
+{
+  "session_id": "chat_20250917_5cd4c8ee-0026-4d42-a976-bcf452c272db",
+  "session_name": "チャットセッション 2025/09/17 19:46",
+  "start_time": "2025-09-17T10:46:31.337563+00:00",
+  "end_time": "2025-09-17T10:46:31.339370+00:00",
+  "message_count": 2,
+  "duration_minutes": 0.0,
+  "messages": [
+    {
+      "message_id": "5cd4c8ee-0026-4d42-a976-bcf452c272db_0",
+      "type": "user",
+      "content": "おはよう。",
+      "timestamp": "2025-09-17T10:46:31.337298+00:00",
+      "metadata": {}
+    },
+    {
+      "message_id": "5cd4c8ee-0026-4d42-a976-bcf452c272db_1",
+      "type": "ai",
+      "content": "おはようございます。今日はどのようなことでお悩みでしょうか？私はあなたの心の声をしっかりと受け止めます。",
+      "timestamp": "2025-09-17T10:46:31.339370+00:00",
+      "metadata": {
+        "category": "深い共感",
+        "needs_analysis": {
+          "complaining_listening": 0.0,
+          "emotion_organizing": 0.0,
+          "recognition_desire": 0.0,
+          "encouragement": 0.0,
+          "loneliness": 0.0
+        },
+        "emotion_analysis": {
+          "polarity": 0.0,
+          "intensity": 0.0,
+          "dominant_emotion": "ニュートラル"
+        },
+        "resort_scores": {
+          "relationship": 6,
+          "emotion": 0,
+          "spirit": 3,
+          "occupation": 16,
+          "romance": 3,
+          "time": 10,
+          "intelligence": 43
+        },
+        "fortune_timing_score": 4,
+        "suggested_fortune": null,
+        "rally_count": 2,
+        "user_data": {
+          "basic_info": {},
+          "psychology_emotion": {},
+          "love_relationships": {},
+          "work_career": {},
+          "spiritual_values": {},
+          "analysis_results": {
+            "resort_ti_scores": {
+              "relationship": 3,
+              "emotion": 0,
+              "spirit": 3,
+              "occupation": 8,
+              "romance": 3,
+              "time": 9,
+              "intelligence": 23.8,
+              "total": 7
+            },
+            "detected_needs": {
+              "complaining_listening": 0,
+              "emotion_organizing": 0,
+              "recognition_desire": 0,
+              "encouragement": 0,
+              "loneliness": 0
+            },
+            "emotional_analysis": {
+              "polarity": 0,
+              "intensity": 0,
+              "dominant_emotion": "ニュートラル"
+            },
+            "fortune_suggestion": {
+              "timing_score": 3,
+              "recommended_menu": null,
+              "confidence": 0
+            },
+            "data_completeness": {
+              "basic_info": 0,
+              "psychology_emotion": 20,
+              "love_relationships": 0,
+              "work_career": 0,
+              "spiritual_values": 0,
+              "total": 4
+            }
+          }
+        }
+      }
+    }
+  ]
+}

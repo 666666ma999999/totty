@@ -7,6 +7,7 @@ class FortuneChat {
         this.userData = this.initUserData();
         this.chatHistory = [];
         this.currentCharacter = 'psychic';
+        this.sessionId = null; // セッション継続用
         
         // UI要素
         this.initializeElements();
@@ -14,8 +15,9 @@ class FortuneChat {
         
         // システム初期化
         this.loadSystemConfigs();
+        this.loadDynamicGreeting();
         this.startRealtimeUpdates();
-        
+
         console.log('占いチャットシステム初期化完了');
     }
     
@@ -29,8 +31,8 @@ class FortuneChat {
             spiritual_values: {},
             analysis_results: {
                 resort_ti_scores: {
-                    relationship: 0, emotion: 0, spirit: 0, occupation: 0,
-                    romance: 0, time: 0, intelligence: 0, total: 0
+                    relationship: 0, emotion: 0, situation: 0, objective: 0,
+                    resource: 0, time: 0, total: 0
                 },
                 detected_needs: {
                     complaining_listening: 0, emotion_organizing: 0,
@@ -97,17 +99,36 @@ class FortuneChat {
         // RESORT-TI要素
         this.relationshipScore = document.getElementById('relationshipScore');
         this.emotionScore = document.getElementById('emotionScore');
-        this.spiritScore = document.getElementById('spiritScore');
-        this.occupationScore = document.getElementById('occupationScore');
-        this.romanceScore = document.getElementById('romanceScore');
+        this.situationScore = document.getElementById('situationScore');
+        this.objectiveScore = document.getElementById('objectiveScore');
+        this.resourceScore = document.getElementById('resourceScore');
         this.timeScore = document.getElementById('timeScore');
-        this.intelligenceScore = document.getElementById('intelligenceScore');
         this.resortTotal = document.getElementById('resortTotal');
+
+        // RESORT分析詳細要素
+        this.resortAnalysisDetails = document.getElementById('resortAnalysisDetails');
+        this.relationshipDetail = document.getElementById('relationshipDetail');
+        this.emotionDetail = document.getElementById('emotionDetail');
+        this.situationDetail = document.getElementById('situationDetail');
+        this.objectiveDetail = document.getElementById('objectiveDetail');
+        this.resourceDetail = document.getElementById('resourceDetail');
+        this.timeDetail = document.getElementById('timeDetail');
         
-        // 感情分析要素
-        this.emotionPolarity = document.getElementById('emotionPolarity');
-        this.emotionIntensity = document.getElementById('emotionIntensity');
-        this.dominantEmotion = document.getElementById('dominantEmotion');
+        // 感情分析要素（新規）
+        this.primaryEmotion = document.getElementById('primaryEmotion');
+        this.emotionIntensityNew = document.getElementById('emotionIntensityNew');
+        this.empathyLevel = document.getElementById('empathyLevel');
+        this.analysisQuality = document.getElementById('analysisQuality');
+
+        // 多層感情解析要素
+        this.surfaceEmotion = document.getElementById('surfaceEmotion');
+        this.middleEmotion = document.getElementById('middleEmotion');
+        this.deepEmotion = document.getElementById('deepEmotion');
+
+        // トーンマッチング要素
+        this.toneMatching = document.getElementById('toneMatching');
+        this.crisisLevel = document.getElementById('crisisLevel');
+
         
         // 占いタイミング要素
         this.fortuneTimingScore = document.getElementById('fortuneTimingScore');
@@ -221,7 +242,38 @@ class FortuneChat {
             }
         ];
     }
-    
+
+    // 動的挨拶読み込み
+    async loadDynamicGreeting() {
+        try {
+            const visitCount = localStorage.getItem('visitCount') ? parseInt(localStorage.getItem('visitCount')) + 1 : 1;
+            localStorage.setItem('visitCount', visitCount.toString());
+
+            const response = await fetch(`/api/greeting?visit_count=${visitCount}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                // 最初のbot-messageを探して更新
+                const firstBotMessage = this.chatMessages.querySelector('.bot-message .message-content p');
+                if (firstBotMessage) {
+                    firstBotMessage.textContent = data.greeting;
+                }
+
+                console.log('動的挨拶をロードしました:', data.greeting);
+            } else {
+                console.error('挨拶の取得に失敗しました:', response.statusText);
+            }
+        } catch (error) {
+            console.error('動的挨拶の読み込みエラー:', error);
+        }
+    }
+
     // メッセージ送信
     async sendMessage() {
         const message = this.userInput.value.trim();
@@ -298,9 +350,6 @@ class FortuneChat {
         
         // データ収集
         this.collectData(message);
-        
-        // RESORT-TI分析更新
-        this.updateResortScores();
         
         // 分析結果を返す
         return {
@@ -397,39 +446,7 @@ class FortuneChat {
             completeness.spiritual_values
         ) / 5;
     }
-    
-    // RESORT-TI分析更新
-    updateResortScores() {
-        const scores = this.userData.analysis_results.resort_ti_scores;
-        const completeness = this.userData.analysis_results.data_completeness;
-        const needs = this.userData.analysis_results.detected_needs;
-        
-        // 関係性(R)
-        scores.relationship = Math.min(100, scores.relationship + needs.complaining_listening * 0.1);
-        
-        // 感情(E)
-        scores.emotion = Math.min(100, scores.emotion + (needs.encouragement + needs.emotion_organizing) * 0.05);
-        
-        // 精神性(S)
-        scores.spirit = Math.min(100, scores.spirit + completeness.spiritual_values * 0.3);
-        
-        // 職業(O)
-        scores.occupation = Math.min(100, scores.occupation + completeness.work_career * 0.2);
-        
-        // 恋愛(Romance)
-        scores.romance = Math.min(100, scores.romance + completeness.love_relationships * 0.3);
-        
-        // 時間(T)
-        scores.time = Math.min(100, scores.time + this.rallyCount * 2);
-        
-        // 知性(I)
-        scores.intelligence = Math.min(100, scores.intelligence + completeness.total * 0.2);
-        
-        // 総合スコア
-        scores.total = Math.round((scores.relationship + scores.emotion + scores.spirit + 
-                                 scores.occupation + scores.romance + scores.time + scores.intelligence) / 7);
-    }
-    
+
     // AI応答生成
     async generateResponse(message) {
         try {
@@ -438,7 +455,8 @@ class FortuneChat {
                 message: message,
                 user_data: this.userData,
                 chat_history: this.chatHistory.slice(-5), // 最新5件の履歴
-                rally_count: this.rallyCount
+                rally_count: this.rallyCount,
+                session_id: this.sessionId // セッション継続用
             };
 
             const response = await fetch('http://127.0.0.1:8011/api/chat', {
@@ -451,7 +469,13 @@ class FortuneChat {
 
             if (response.ok) {
                 const data = await response.json();
-                
+
+                // セッションIDを保存（継続会話用）
+                if (data.session_id) {
+                    this.sessionId = data.session_id;
+                    console.log('セッション継続:', this.sessionId);
+                }
+
                 // AI分析結果をユーザーデータに反映
                 if (data.needs_analysis) {
                     Object.assign(this.userData.analysis_results.detected_needs, data.needs_analysis);
@@ -462,9 +486,18 @@ class FortuneChat {
                 }
                 
                 if (data.resort_scores) {
-                    Object.assign(this.userData.analysis_results.resort_ti_scores, data.resort_scores);
+                    // v3.2仕様: 古い次元データをクリアしてから新しいデータを設定
+                    this.userData.analysis_results.resort_ti_scores = {
+                        relationship: data.resort_scores.relationship || 0,
+                        emotion: data.resort_scores.emotion || 0,
+                        situation: data.resort_scores.situation || 0,
+                        objective: data.resort_scores.objective || 0,
+                        resource: data.resort_scores.resource || 0,
+                        time: data.resort_scores.time || 0,
+                        total: 0
+                    };
                     // 総合スコア計算
-                    const total = Object.values(data.resort_scores).reduce((sum, val) => sum + val, 0) / 7;
+                    const total = Object.values(data.resort_scores).reduce((sum, val) => sum + val, 0) / 6;
                     this.userData.analysis_results.resort_ti_scores.total = Math.round(total);
                 }
                 
@@ -654,13 +687,13 @@ class FortuneChat {
         return this.fortuneMenus.map(menu => {
             let matchScore = 50; // ベーススコア
             
-            // メニューごとのマッチング計算
+            // メニューごとのマッチング計算（v3.2仕様）
             if (menu.id === "honesty_reading") {
-                matchScore += (resortScores.romance * 0.3) + (resortScores.relationship * 0.3);
+                matchScore += (resortScores.relationship * 0.3) + (resortScores.emotion * 0.3);
             } else if (menu.id === "love_compatibility") {
-                matchScore += (resortScores.romance * 0.4) + (resortScores.spirit * 0.2);
+                matchScore += (resortScores.relationship * 0.4) + (resortScores.resource * 0.2);
             } else if (menu.id === "love_timing") {
-                matchScore += (resortScores.time * 0.4) + (resortScores.romance * 0.3);
+                matchScore += (resortScores.time * 0.4) + (resortScores.relationship * 0.3);
             }
             
             return {
@@ -838,29 +871,144 @@ class FortuneChat {
     updateResortDisplay() {
         const scores = this.userData.analysis_results.resort_ti_scores;
 
-        // DOM要素の存在確認
+        // DOM要素の存在確認（v3.2仕様の6次元）
         if (this.relationshipScore) this.relationshipScore.textContent = Math.round(scores.relationship);
         if (this.emotionScore) this.emotionScore.textContent = Math.round(scores.emotion);
-        if (this.spiritScore) this.spiritScore.textContent = Math.round(scores.spirit);
-        if (this.occupationScore) this.occupationScore.textContent = Math.round(scores.occupation);
-        if (this.romanceScore) this.romanceScore.textContent = Math.round(scores.romance);
+        if (this.situationScore) this.situationScore.textContent = Math.round(scores.situation);
+        if (this.objectiveScore) this.objectiveScore.textContent = Math.round(scores.objective);
+        if (this.resourceScore) this.resourceScore.textContent = Math.round(scores.resource);
         if (this.timeScore) this.timeScore.textContent = Math.round(scores.time);
-        if (this.intelligenceScore) this.intelligenceScore.textContent = Math.round(scores.intelligence);
         if (this.resortTotal) this.resortTotal.textContent = Math.round(scores.total);
 
-        // I値更新
-        if (this.iValue) this.iValue.textContent = Math.round(scores.intelligence);
-        if (this.iValueBar) this.iValueBar.style.width = `${scores.intelligence}%`;
+        // I値をResourceスコアに変更（心理的リソース）
+        if (this.iValue) this.iValue.textContent = Math.round(scores.resource);
+        if (this.iValueBar) this.iValueBar.style.width = `${scores.resource * 10}%`;
+
+        // 分析詳細の更新と表示
+        this.updateResortAnalysisDetails(scores);
+    }
+
+    // RESORT分析詳細更新
+    updateResortAnalysisDetails(scores) {
+        // スコアに基づいて詳細説明を生成
+        const details = this.generateAnalysisDetails(scores);
+
+        if (this.relationshipDetail) this.relationshipDetail.textContent = `関係性(R): ${details.relationship}`;
+        if (this.emotionDetail) this.emotionDetail.textContent = `感情強度(E): ${details.emotion}`;
+        if (this.situationDetail) this.situationDetail.textContent = `状況深刻度(S): ${details.situation}`;
+        if (this.objectiveDetail) this.objectiveDetail.textContent = `目的明確性(O): ${details.objective}`;
+        if (this.resourceDetail) this.resourceDetail.textContent = `リソース(R): ${details.resource}`;
+        if (this.timeDetail) this.timeDetail.textContent = `時間的要因(T): ${details.time}`;
+
+        // 分析詳細エリアを表示（スコアがある場合のみ）
+        if (this.resortAnalysisDetails && scores.total > 0) {
+            this.resortAnalysisDetails.style.display = 'block';
+        }
+    }
+
+    // 分析詳細テキスト生成
+    generateAnalysisDetails(scores) {
+        const details = {};
+
+        // 関係性
+        if (scores.relationship >= 7) {
+            details.relationship = "彼氏との関係があることが前提、ある程度の親密度";
+        } else if (scores.relationship >= 5) {
+            details.relationship = "人間関係の基盤はある";
+        } else {
+            details.relationship = "関係性の詳細が不明確";
+        }
+
+        // 感情強度
+        if (scores.emotion >= 7) {
+            details.emotion = "不安・心配・寂しさが混在、中〜高程度";
+        } else if (scores.emotion >= 5) {
+            details.emotion = "感情的な動揺が見られる";
+        } else {
+            details.emotion = "感情状態は安定している";
+        }
+
+        // 状況深刻度
+        if (scores.situation >= 5) {
+            details.situation = "連絡がないという状況、緊急性は中程度";
+        } else if (scores.situation >= 3) {
+            details.situation = "問題状況が存在";
+        } else {
+            details.situation = "特に深刻な状況は見られない";
+        }
+
+        // 目的明確性
+        if (scores.objective <= 3) {
+            details.objective = "何を求めているか不明確（理由を知りたい？対処法？）";
+        } else if (scores.objective >= 6) {
+            details.objective = "目的がある程度明確";
+        } else {
+            details.objective = "目的が部分的に明確";
+        }
+
+        // 心理的リソース
+        if (scores.resource == 5) {
+            details.resource = "現在の心理的余裕は中程度";
+        } else if (scores.resource < 4) {
+            details.resource = "心理的リソースが不足気味";
+        } else if (scores.resource > 6) {
+            details.resource = "心理的余裕がある";
+        } else {
+            details.resource = "心理的リソースは普通レベル";
+        }
+
+        // 時間的要因
+        if (scores.time >= 8) {
+            details.time = "「連絡がこない」という継続的な状況";
+        } else if (scores.time >= 6) {
+            details.time = "時間的な要因が影響している";
+        } else {
+            details.time = "時間的要因は軽微";
+        }
+
+        return details;
     }
     
     // 感情分析表示更新
     updateEmotionDisplay() {
         const emotion = this.userData.analysis_results.emotional_analysis;
 
-        // DOM要素の存在確認
-        if (this.emotionPolarity) this.emotionPolarity.textContent = emotion.polarity.toFixed(2);
-        if (this.emotionIntensity) this.emotionIntensity.textContent = emotion.intensity.toFixed(2);
-        if (this.dominantEmotion) this.dominantEmotion.textContent = emotion.dominant_emotion || '-';
+        // 新規感情分析要素の更新
+        if (this.primaryEmotion) {
+            this.primaryEmotion.textContent = emotion.primary_emotion || emotion.dominant_emotion || '-';
+        }
+        if (this.emotionIntensityNew) {
+            const intensity = emotion.emotion_intensity || (emotion.intensity * 100) || 0;
+            this.emotionIntensityNew.textContent = `${Math.round(intensity)}/100`;
+        }
+        if (this.empathyLevel) {
+            this.empathyLevel.textContent = `${emotion.empathy_level || 1}/5`;
+        }
+        if (this.analysisQuality) {
+            this.analysisQuality.textContent = emotion.analysis_quality || 'basic';
+        }
+
+        // 多層感情解析要素の更新
+        if (emotion.emotion_layers) {
+            if (this.surfaceEmotion) {
+                this.surfaceEmotion.textContent = emotion.emotion_layers.surface || '-';
+            }
+            if (this.middleEmotion) {
+                this.middleEmotion.textContent = emotion.emotion_layers.middle || '-';
+            }
+            if (this.deepEmotion) {
+                this.deepEmotion.textContent = emotion.emotion_layers.deep || '-';
+            }
+        }
+
+        // トーンマッチング要素の更新
+        if (this.toneMatching) {
+            this.toneMatching.textContent = emotion.tone_matching || '-';
+        }
+        if (this.crisisLevel) {
+            this.crisisLevel.textContent = emotion.crisis_level || 0;
+        }
+
     }
     
     // 占いタイミング表示更新

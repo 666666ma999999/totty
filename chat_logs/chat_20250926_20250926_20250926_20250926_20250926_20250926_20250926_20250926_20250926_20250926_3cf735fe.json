@@ -1,0 +1,61 @@
+{
+  "session_id": "chat_20250926_20250926_20250926_20250926_20250926_20250926_20250926_20250926_20250926_20250926_3cf735fe",
+  "session_name": "チャットセッション 2025/09/26 21:57",
+  "start_time": "2025-09-26T12:57:00.471054+00:00",
+  "end_time": "2025-09-26T12:57:00.471819+00:00",
+  "message_count": 2,
+  "duration_minutes": 0.0,
+  "messages": [
+    {
+      "message_id": "20250926_20250926_20250926_20250926_20250926_20250926_20250926_20250926_20250926_3cf735fe_0",
+      "type": "user",
+      "content": "彼氏から連絡がこない",
+      "timestamp": "2025-09-26T12:57:00.470932+00:00",
+      "metadata": {}
+    },
+    {
+      "message_id": "20250926_20250926_20250926_20250926_20250926_20250926_20250926_20250926_20250926_3cf735fe_1",
+      "type": "ai",
+      "content": "それは心配で不安な気持ちになることでしょうね。彼が何か忙しいことに取り組んでいる可能性もありますが、一度、あなたの気持ちを伝えてみてはいかがでしょうか。無理せず、自分の感情を大切にしてくださいね。",
+      "timestamp": "2025-09-26T12:57:00.471819+00:00",
+      "metadata": {
+        "category": "励まし・希望提示型",
+        "needs_analysis": {
+          "complaining_listening": 0.0,
+          "emotion_organizing": 0.0,
+          "recognition_desire": 0.0,
+          "encouragement": 0.0,
+          "loneliness": 0.0
+        },
+        "emotion_analysis": {
+          "primary_emotion": "不安",
+          "emotion_intensity": 70,
+          "emotion_layers": {
+            "surface": "イライラ",
+            "middle": "寂しさ",
+            "deep": "見捨てられ不安"
+          },
+          "empathy_level": 4,
+          "tone_matching": "共感的・受容的",
+          "analysis_quality": "enhanced",
+          "crisis_level": 2,
+          "polarity": -1.0,
+          "intensity": 0.7,
+          "dominant_emotion": "不安"
+        },
+        "resort_scores": {
+          "relationship": 7,
+          "emotion": 7,
+          "situation": 5,
+          "objective": 3,
+          "resource": 5,
+          "time": 8
+        },
+        "fortune_timing_score": 2,
+        "suggested_fortune": null,
+        "rally_count": 0,
+        "user_data": {}
+      }
+    }
+  ]
+}

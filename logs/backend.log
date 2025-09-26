@@ -1,8 +1,77 @@
-Traceback (most recent call last):
-  File "/Users/masaaki/Desktop/prm/totty2/backend/main.py", line 48, in <module>
-    openai_client = OpenAI(api_key=OPENAI_API_KEY)
-  File "/Users/masaaki/Library/Python/3.9/lib/python/site-packages/openai/_client.py", line 107, in __init__
-    super().__init__(
-  File "/Users/masaaki/Library/Python/3.9/lib/python/site-packages/openai/_base_client.py", line 738, in __init__
-    self._client = http_client or httpx.Client(
-TypeError: __init__() got an unexpected keyword argument 'proxies'
+/Users/masaaki/Desktop/prm/totty2/backend/main.py:159: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+/Users/masaaki/Desktop/prm/totty2/backend/main.py:192: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("shutdown")
+INFO:     Started server process [40008]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8011 (Press CTRL+C to quit)
+統合占いチャットシステム - 起動準備中...
+✅ 設定検証完了
+============================================================
+🔮 統合占いチャットシステム サーバー起動中...
+============================================================
+MDファイル読み込み完了: 7個のファイル
+✅ MDファイル読み込み完了: 7個のファイル
+   - needs_detection: ✅ 読み込み成功
+   - third_sentence_categories: ✅ 読み込み成功
+   - category_selection: ✅ 読み込み成功
+   - analysis_system: ✅ 読み込み成功
+   - data_collection: ✅ 読み込み成功
+   - fortune_system: ✅ 読み込み成功
+   - fortune_menu_matching: ✅ 読み込み成功
+✅ OpenAI クライアント初期化完了
+🚀 サーバー起動完了: http://127.0.0.1:8011
+📚 API ドキュメント: http://127.0.0.1:8011/docs
+============================================================
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+✅ 挨拶システム設定読み込み成功
+✅ greeting_system.mdからシステムプロンプト構築完了
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+INFO:     127.0.0.1:53097 - "GET /api/greeting?visit_count=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53127 - "GET / HTTP/1.1" 200 OK
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+✅ 挨拶システム設定読み込み成功
+✅ greeting_system.mdからシステムプロンプト構築完了
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+INFO:     127.0.0.1:53127 - "GET /api/greeting?visit_count=2 HTTP/1.1" 200 OK
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+✅ 挨拶システム設定読み込み成功
+✅ greeting_system.mdからシステムプロンプト構築完了
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+INFO:     127.0.0.1:53303 - "GET /api/greeting?visit_count=1 HTTP/1.1" 200 OK
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+✅ 挨拶システム設定読み込み成功
+✅ greeting_system.mdからシステムプロンプト構築完了
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+INFO:     127.0.0.1:53332 - "GET /api/greeting?visit_count=3 HTTP/1.1" 200 OK
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+✅ 挨拶システム設定読み込み成功
+✅ greeting_system.mdからシステムプロンプト構築完了
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+INFO:     127.0.0.1:53391 - "GET /api/greeting?visit_count=1 HTTP/1.1" 200 OK
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+✅ 挨拶システム設定読み込み成功
+✅ greeting_system.mdからシステムプロンプト構築完了
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+INFO:     127.0.0.1:53408 - "GET /api/greeting?visit_count=1 HTTP/1.1" 200 OK
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+✅ 挨拶システム設定読み込み成功
+✅ greeting_system.mdからシステムプロンプト構築完了
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+INFO:     127.0.0.1:53429 - "GET /api/greeting?visit_count=2 HTTP/1.1" 200 OK
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+✅ 挨拶システム設定読み込み成功
+✅ greeting_system.mdからシステムプロンプト構築完了
+✅ キャラクター設定読み込み成功: 心の専門家パートナー
+INFO:     127.0.0.1:53549 - "GET /api/greeting?visit_count=1 HTTP/1.1" 200 OK

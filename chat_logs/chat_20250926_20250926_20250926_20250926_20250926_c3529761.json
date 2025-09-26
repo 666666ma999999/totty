@@ -1,0 +1,62 @@
+{
+  "session_id": "chat_20250926_20250926_20250926_20250926_20250926_c3529761",
+  "session_name": "チャットセッション 2025/09/26 18:42",
+  "start_time": "2025-09-26T09:42:22.388765+00:00",
+  "end_time": "2025-09-26T09:42:22.389325+00:00",
+  "message_count": 2,
+  "duration_minutes": 0.0,
+  "messages": [
+    {
+      "message_id": "20250926_20250926_20250926_20250926_c3529761_0",
+      "type": "user",
+      "content": "彼氏から連絡がこない...",
+      "timestamp": "2025-09-26T09:42:22.388706+00:00",
+      "metadata": {}
+    },
+    {
+      "message_id": "20250926_20250926_20250926_20250926_c3529761_1",
+      "type": "ai",
+      "content": "それはとても辛い気持ちになるね。彼も忙しいかもしれないけど、あなたの気持ちは大切だから、彼にそれを伝えてみてはどうでしょうか。伝えることで、二人のコミュニケーションがより良くなることを願っています。",
+      "timestamp": "2025-09-26T09:42:22.389325+00:00",
+      "metadata": {
+        "category": "深い共感",
+        "needs_analysis": {
+          "complaining_listening": 0.0,
+          "emotion_organizing": 0.0,
+          "recognition_desire": 0.0,
+          "encouragement": 0.0,
+          "loneliness": 0.0
+        },
+        "emotion_analysis": {
+          "primary_emotion": "ニュートラル",
+          "emotion_intensity": 0,
+          "emotion_layers": {
+            "surface": "平静",
+            "middle": "自己理解の欲求",
+            "deep": "ありのままの自分を愛されたい"
+          },
+          "empathy_level": 1,
+          "tone_matching": "自然体・バランス型",
+          "analysis_quality": "primary",
+          "crisis_level": 0,
+          "polarity": 0.0,
+          "intensity": 0.0,
+          "dominant_emotion": "ニュートラル"
+        },
+        "resort_scores": {
+          "relationship": 3,
+          "emotion": 0,
+          "spirit": 3,
+          "occupation": 8,
+          "romance": 3,
+          "time": 5,
+          "intelligence": 23
+        },
+        "fortune_timing_score": 2,
+        "suggested_fortune": null,
+        "rally_count": 1,
+        "user_data": {}
+      }
+    }
+  ]
+}

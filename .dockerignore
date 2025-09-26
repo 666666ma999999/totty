@@ -1,0 +1,59 @@
+# Git関連
+.git
+.gitignore
+
+# Python関連
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE関連
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS関連
+.DS_Store
+Thumbs.db
+
+# ログファイル
+*.log
+logs/*
+
+# 環境変数
+.env
+.env.local
+
+# Docker関連
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# テストファイル
+test_*.py
+*_test.py
+
+# ドキュメント
+*.md
+!README.md
+
+# 開発用ファイル
+claude.md

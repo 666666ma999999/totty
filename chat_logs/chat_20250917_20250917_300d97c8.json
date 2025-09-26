@@ -1,0 +1,262 @@
+{
+  "session_id": "chat_20250917_20250917_300d97c8",
+  "session_name": "チャットセッション 2025/09/17 21:24",
+  "start_time": "2025-09-17T12:24:09.452835+00:00",
+  "end_time": "2025-09-17T13:21:10.750694+00:00",
+  "message_count": 6,
+  "duration_minutes": 57.02,
+  "messages": [
+    {
+      "message_id": "20250917_300d97c8_0",
+      "type": "user",
+      "content": "おはよう、",
+      "timestamp": "2025-09-17T12:24:09.452755+00:00",
+      "metadata": {}
+    },
+    {
+      "message_id": "20250917_300d97c8_1",
+      "type": "ai",
+      "content": "おはようございます。あなたのお悩み、何でもお聞かせください。心を開いて話していただけると嬉しいです。",
+      "timestamp": "2025-09-17T12:24:09.453525+00:00",
+      "metadata": {
+        "category": "深い共感",
+        "needs_analysis": {
+          "complaining_listening": 0.0,
+          "emotion_organizing": 0.0,
+          "recognition_desire": 0.0,
+          "encouragement": 0.0,
+          "loneliness": 0.0
+        },
+        "emotion_analysis": {
+          "polarity": 0.0,
+          "intensity": 0.0,
+          "dominant_emotion": "ニュートラル"
+        },
+        "resort_scores": {
+          "relationship": 3,
+          "emotion": 0,
+          "spirit": 3,
+          "occupation": 8,
+          "romance": 3,
+          "time": 5,
+          "intelligence": 23
+        },
+        "fortune_timing_score": 2,
+        "suggested_fortune": null,
+        "rally_count": 1,
+        "user_data": {
+          "basic_info": {},
+          "psychology_emotion": {},
+          "love_relationships": {},
+          "work_career": {},
+          "spiritual_values": {},
+          "analysis_results": {
+            "resort_ti_scores": {
+              "relationship": 0,
+              "emotion": 0,
+              "spirit": 0,
+              "occupation": 0,
+              "romance": 0,
+              "time": 2,
+              "intelligence": 0.4,
+              "total": 0
+            },
+            "detected_needs": {
+              "complaining_listening": 0,
+              "emotion_organizing": 0,
+              "recognition_desire": 0,
+              "encouragement": 0,
+              "loneliness": 0
+            },
+            "emotional_analysis": {
+              "polarity": 0,
+              "intensity": 0,
+              "dominant_emotion": "ニュートラル"
+            },
+            "fortune_suggestion": {
+              "timing_score": 0,
+              "recommended_menu": null,
+              "confidence": 0
+            },
+            "data_completeness": {
+              "basic_info": 0,
+              "psychology_emotion": 10,
+              "love_relationships": 0,
+              "work_career": 0,
+              "spiritual_values": 0,
+              "total": 2
+            }
+          }
+        }
+      }
+    },
+    {
+      "message_id": "20250917_300d97c8_2",
+      "type": "user",
+      "content": "ohayou",
+      "timestamp": "2025-09-17T13:20:45.628748+00:00",
+      "metadata": {}
+    },
+    {
+      "message_id": "20250917_300d97c8_3",
+      "type": "ai",
+      "content": "おはようございます。私は蒼司と申します。今日はどのようなことでお悩みでしょうか？",
+      "timestamp": "2025-09-17T13:20:45.632710+00:00",
+      "metadata": {
+        "category": "深い共感",
+        "needs_analysis": {
+          "complaining_listening": 0.0,
+          "emotion_organizing": 0.0,
+          "recognition_desire": 0.0,
+          "encouragement": 0.0,
+          "loneliness": 0.0
+        },
+        "emotion_analysis": {
+          "polarity": 0.0,
+          "intensity": 0.0,
+          "dominant_emotion": "ニュートラル"
+        },
+        "resort_scores": {
+          "relationship": 6,
+          "emotion": 0,
+          "spirit": 3,
+          "occupation": 16,
+          "romance": 3,
+          "time": 10,
+          "intelligence": 43
+        },
+        "fortune_timing_score": 4,
+        "suggested_fortune": null,
+        "rally_count": 2,
+        "user_data": {
+          "basic_info": {},
+          "psychology_emotion": {},
+          "love_relationships": {},
+          "work_career": {},
+          "spiritual_values": {},
+          "analysis_results": {
+            "resort_ti_scores": {
+              "relationship": 3,
+              "emotion": 0,
+              "spirit": 3,
+              "occupation": 8,
+              "romance": 3,
+              "time": 9,
+              "intelligence": 23.8,
+              "total": 7
+            },
+            "detected_needs": {
+              "complaining_listening": 0,
+              "emotion_organizing": 0,
+              "recognition_desire": 0,
+              "encouragement": 0,
+              "loneliness": 0
+            },
+            "emotional_analysis": {
+              "polarity": 0,
+              "intensity": 0,
+              "dominant_emotion": "ニュートラル"
+            },
+            "fortune_suggestion": {
+              "timing_score": 3,
+              "recommended_menu": null,
+              "confidence": 0
+            },
+            "data_completeness": {
+              "basic_info": 0,
+              "psychology_emotion": 20,
+              "love_relationships": 0,
+              "work_career": 0,
+              "spiritual_values": 0,
+              "total": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "message_id": "20250917_300d97c8_4",
+      "type": "user",
+      "content": "彼氏から連絡がこない",
+      "timestamp": "2025-09-17T13:21:10.749412+00:00",
+      "metadata": {}
+    },
+    {
+      "message_id": "20250917_300d97c8_5",
+      "type": "ai",
+      "content": "その気持ち、私にも届いています。連絡がないと心配になってしまいますよね...あなたの不安や寂しさ、とてもよく理解できます。しかし、彼からの連絡がない理由は様々かもしれません。もしかしたら、彼自身が何かに追われていて、連絡をとる余裕がないのかもしれませんよ。まずは、あなたの心に余裕を持つことが大切です。その上で、彼に対する想いを素直に伝えてみてはいかがでしょうか？",
+      "timestamp": "2025-09-17T13:21:10.750694+00:00",
+      "metadata": {
+        "category": "深い共感",
+        "needs_analysis": {
+          "complaining_listening": 0.0,
+          "emotion_organizing": 0.0,
+          "recognition_desire": 0.0,
+          "encouragement": 0.0,
+          "loneliness": 0.0
+        },
+        "emotion_analysis": {
+          "polarity": 0.0,
+          "intensity": 0.0,
+          "dominant_emotion": "ニュートラル"
+        },
+        "resort_scores": {
+          "relationship": 9,
+          "emotion": 0,
+          "spirit": 3,
+          "occupation": 24,
+          "romance": 3,
+          "time": 15,
+          "intelligence": 63
+        },
+        "fortune_timing_score": 6,
+        "suggested_fortune": null,
+        "rally_count": 3,
+        "user_data": {
+          "basic_info": {},
+          "psychology_emotion": {},
+          "love_relationships": {},
+          "work_career": {},
+          "spiritual_values": {},
+          "analysis_results": {
+            "resort_ti_scores": {
+              "relationship": 6,
+              "emotion": 0,
+              "spirit": 3,
+              "occupation": 16,
+              "romance": 10.5,
+              "time": 16,
+              "intelligence": 45.2,
+              "total": 14
+            },
+            "detected_needs": {
+              "complaining_listening": 0,
+              "emotion_organizing": 0,
+              "recognition_desire": 0,
+              "encouragement": 0,
+              "loneliness": 0
+            },
+            "emotional_analysis": {
+              "polarity": 0,
+              "intensity": 0,
+              "dominant_emotion": "ニュートラル"
+            },
+            "fortune_suggestion": {
+              "timing_score": 6,
+              "recommended_menu": null,
+              "confidence": 0
+            },
+            "data_completeness": {
+              "basic_info": 0,
+              "psychology_emotion": 30,
+              "love_relationships": 25,
+              "work_career": 0,
+              "spiritual_values": 0,
+              "total": 11
+            }
+          }
+        }
+      }
+    }
+  ]
+}

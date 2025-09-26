@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>占いチャットシステム - 蒼司の占い館</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <div class="container">
@@ -12,13 +12,16 @@
         <div class="main-chat">
             <div class="chat-header">
                 <h1>🔮 蒼司の占い館</h1>
-                <p class="character-intro">イケメン霊能師 蒼司があなたの心を癒し、未来への道標をお示しします</p>
+                <p class="character-intro">心の専門家パートナー 蒼司があなたの心に寄り添い、一緒に答えを見つけていきます</p>
+                <div class="header-links">
+                    <a href="/chat_history/" class="history-link">📋 チャット履歴を見る</a>
+                </div>
             </div>
             
             <div class="chat-messages" id="chatMessages">
                 <div class="message bot-message">
                     <div class="message-content">
-                        <p>こんにちは。私は霊能師の蒼司と申します。今日はどのようなことでお悩みでしょうか？あなたの心の声を聞かせてください。</p>
+                        <p>挨拶文を読み込み中...</p>
                     </div>
                 </div>
             </div>
@@ -51,14 +54,14 @@
                 </div>
             </div>
             
-            <!-- I値 -->
+            <!-- リソース値 -->
             <div class="analysis-section">
-                <h3>🧠 I値 (Intelligence)</h3>
+                <h3>💪 心理的リソース</h3>
                 <div class="progress-bar">
                     <div class="progress-fill" id="iValueBar" style="width: 0%"></div>
                 </div>
                 <div class="value-display">
-                    <span id="iValue">0</span> / 100
+                    <span id="iValue">0</span> / 10
                 </div>
             </div>
             
@@ -139,45 +142,54 @@
                 <h3>👤 キャラクター</h3>
                 <div class="character-info">
                     <div class="character-name">蒼司 (Souji)</div>
-                    <div class="character-role">イケメン霊能師</div>
+                    <div class="character-role">心の専門家パートナー</div>
                     <div class="character-mood" id="characterMood">穏やか</div>
                 </div>
             </div>
             
             <!-- RESORT値 -->
             <div class="analysis-section">
-                <h3>🌟 RESORT-TI 分析</h3>
+                <h3>🌟 RESORT 6次元分析</h3>
                 <div class="resort-display">
                     <div class="resort-item">
                         <span>R (関係性)</span>
                         <span id="relationshipScore">0</span>
                     </div>
                     <div class="resort-item">
-                        <span>E (感情)</span>
+                        <span>E (感情強度)</span>
                         <span id="emotionScore">0</span>
                     </div>
                     <div class="resort-item">
-                        <span>S (精神性)</span>
-                        <span id="spiritScore">0</span>
+                        <span>S (状況深刻度)</span>
+                        <span id="situationScore">0</span>
                     </div>
                     <div class="resort-item">
-                        <span>O (職業)</span>
-                        <span id="occupationScore">0</span>
+                        <span>O (目的明確性)</span>
+                        <span id="objectiveScore">0</span>
                     </div>
                     <div class="resort-item">
-                        <span>R (恋愛)</span>
-                        <span id="romanceScore">0</span>
+                        <span>R (心理リソース)</span>
+                        <span id="resourceScore">0</span>
                     </div>
                     <div class="resort-item">
-                        <span>T (時間)</span>
+                        <span>T (時間的要因)</span>
                         <span id="timeScore">0</span>
-                    </div>
-                    <div class="resort-item">
-                        <span>I (知性)</span>
-                        <span id="intelligenceScore">0</span>
                     </div>
                     <div class="resort-total">
                         <strong>総合: <span id="resortTotal">0</span></strong>
+                    </div>
+                </div>
+
+                <!-- 分析詳細表示 -->
+                <div class="resort-analysis-details" id="resortAnalysisDetails" style="margin-top: 15px; display: none;">
+                    <h4 style="margin-bottom: 10px; color: #4a5568; font-size: 0.9em;">分析詳細:</h4>
+                    <div class="analysis-details-content" style="font-size: 0.8em; line-height: 1.4; color: #666;">
+                        <div id="relationshipDetail" class="detail-item"></div>
+                        <div id="emotionDetail" class="detail-item"></div>
+                        <div id="situationDetail" class="detail-item"></div>
+                        <div id="objectiveDetail" class="detail-item"></div>
+                        <div id="resourceDetail" class="detail-item"></div>
+                        <div id="timeDetail" class="detail-item"></div>
                     </div>
                 </div>
             </div>
@@ -187,16 +199,54 @@
                 <h3>😊 感情分析値</h3>
                 <div class="emotion-analysis">
                     <div class="emotion-item">
-                        <span>極性</span>
-                        <span id="emotionPolarity">0.0</span>
+                        <span>主要感情</span>
+                        <span id="primaryEmotion">-</span>
                     </div>
                     <div class="emotion-item">
                         <span>強度</span>
-                        <span id="emotionIntensity">0.0</span>
+                        <span id="emotionIntensityNew">0/100</span>
                     </div>
                     <div class="emotion-item">
-                        <span>主要感情</span>
-                        <span id="dominantEmotion">-</span>
+                        <span>共感レベル</span>
+                        <span id="empathyLevel">1/5</span>
+                    </div>
+                    <div class="emotion-item">
+                        <span>解析品質</span>
+                        <span id="analysisQuality">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 多層感情分析 -->
+            <div class="analysis-section">
+                <h3>🧠 多層感情解析</h3>
+                <div class="emotion-layers">
+                    <div class="layer-item">
+                        <span class="layer-label">表層</span>
+                        <span id="surfaceEmotion">-</span>
+                    </div>
+                    <div class="layer-item">
+                        <span class="layer-label">中層</span>
+                        <span id="middleEmotion">-</span>
+                    </div>
+                    <div class="layer-item">
+                        <span class="layer-label">深層</span>
+                        <span id="deepEmotion">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- トーンマッチング -->
+            <div class="analysis-section">
+                <h3>🎭 トーンマッチング</h3>
+                <div class="tone-info">
+                    <div class="tone-item">
+                        <span>推奨トーン</span>
+                        <span id="toneMatching">-</span>
+                    </div>
+                    <div class="tone-item">
+                        <span>危機レベル</span>
+                        <span id="crisisLevel">0</span>
                     </div>
                 </div>
             </div>
@@ -270,6 +320,6 @@
         </div>
     </div>
     
-    <script src="app.js?v=20250916-fix-v2"></script>
+    <script src="/static/app.js?v=20250916-fix-v2"></script>
 </body>
 </html>

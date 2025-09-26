@@ -1,0 +1,38 @@
+services:
+  totty-chat-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: totty-chat-system
+    ports:
+      - "8011:8011"
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # チャット履歴を永続化
+      - ./logs:/app/logs
+      # MDファイルをマウント（設定変更の反映）
+      - ./systems:/app/systems:ro
+      - ./characters:/app/characters:ro
+      - ./data:/app/data:ro
+      - ./fortune_menus:/app/fortune_menus:ro
+      - ./config:/app/config:ro
+    networks:
+      - totty-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8011/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  totty-network:
+    driver: bridge
+
+volumes:
+  totty-logs:
+    driver: local

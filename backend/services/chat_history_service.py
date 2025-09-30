@@ -293,6 +293,10 @@ async def chat_history_page():
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             min-height: 100vh;
             color: #333;
+            user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
         }
 
         .container {
@@ -413,6 +417,42 @@ async def chat_history_page():
         .message-content {
             font-size: 1rem;
             margin-bottom: 5px;
+            user-select: text !important;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            cursor: text;
+        }
+
+        /* すべてのテキスト要素に対する包括的な設定 */
+        .message-item * {
+            user-select: text !important;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+        }
+
+        .session-detail * {
+            user-select: text !important;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+        }
+
+        .expand-icon {
+            float: right;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .session-header:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-view {
+            border-top: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 10px;
         }
 
         .message-timestamp {
@@ -518,9 +558,10 @@ async def chat_history_page():
                 console.log('Container found:', container);
 
                 const html = sessions.map(session => `
-                    <div class="session-item" onclick="chatHistory.toggleSessionDetail('${session.session_id}')">
-                        <div class="session-header">
+                    <div class="session-item">
+                        <div class="session-header" onclick="chatHistory.toggleSessionDetail('${session.session_id}')" style="cursor: pointer;">
                             <div class="session-name">${session.session_name}</div>
+                            <div class="expand-icon">▼</div>
                         </div>
 
                         <div class="session-info">
@@ -542,7 +583,7 @@ async def chat_history_page():
                             </div>
                         </div>
 
-                        <div id="detail-${session.session_id}" class="detail-view">
+                        <div id="detail-${session.session_id}" class="detail-view" style="display: none;" onclick="event.stopPropagation();">
                             <div class="loading">詳細を読み込み中...</div>
                         </div>
                     </div>
